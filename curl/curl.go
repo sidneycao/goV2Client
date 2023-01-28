@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+//对url发起get请求
 func Cget(url string) string {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

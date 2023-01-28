@@ -30,5 +30,4 @@ func main() {
 		node := b64Decoder.Decoder([]byte(decodeStr))
 		fmt.Println(string(node))
 	}
-
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"goV2Client/sub"
 	"os"
 )
 
@@ -46,7 +47,7 @@ func parseArgs(args []string) {
 		help()
 		os.Exit(0)
 	case "-sub":
-		fmt.Println("sub")
+		sub.ParseArgs(args[1:])
 	case "-node":
 		fmt.Println("node")
 	default:

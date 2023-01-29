@@ -69,7 +69,7 @@ func getSub(sub conf.V2Sub) []conf.V2Node {
 	}
 	nodeList, err := parseSub(string(body), sub.Name)
 	if err != nil {
-		log.Panicf(err.Error())
+		log.Panic(err.Error())
 	}
 	return nodeList
 }

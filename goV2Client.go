@@ -1,18 +1,16 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
-	"goV2Client/b64Decoder"
-	"goV2Client/curl"
-	"strings"
+	"os"
 )
 
 var (
 	subUrl = flag.String("sub", "", "订阅地址默认为空")
 )
 
+/**
 func main() {
 	//解析命令行参数
 	flag.Parse()
@@ -30,4 +28,51 @@ func main() {
 		node := b64Decoder.Decoder([]byte(decodeStr))
 		fmt.Println(string(node))
 	}
+}
+**/
+
+func main() {
+	args := os.Args
+	if len(args) < 2 {
+		help()
+		os.Exit(0)
+	}
+	parseArgs(args[1:])
+}
+
+func parseArgs(args []string) {
+	switch args[0] {
+	case "-h", "--help":
+		help()
+		os.Exit(0)
+	case "-sub":
+		fmt.Println("sub")
+	case "-node":
+		fmt.Println("node")
+	default:
+		help()
+		os.Exit(0)
+	}
+}
+
+func help() {
+	fmt.Println(
+		`订阅管理：
+    -sub add {name} {url}
+        添加一个订阅，订阅后节点添加到node list
+    -sub update {name}
+        更新订阅
+    -sub del {name}
+        删除订阅
+    -sub list 
+        查看所有订阅
+节点管理：
+    -node list
+        查看所有节点
+    -node set {node_id}
+        使用该节点
+其他:
+    -h, --help
+        显示此帮助信息
+	`)
 }

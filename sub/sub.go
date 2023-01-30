@@ -1,10 +1,10 @@
 package sub
 
 import (
-	"encoding/base64"
 	"errors"
 	"fmt"
 	"goV2Client/conf"
+	"goV2Client/tools/b64"
 	"goV2Client/tools/params"
 	"io/ioutil"
 	"log"
@@ -74,15 +74,10 @@ func getSub(sub conf.V2Sub) []conf.V2Node {
 	return nodeList
 }
 
-//解析base64
+//解析订阅链接
 func parseSub(res string, subName string) ([]conf.V2Node, error) {
 	nodeList := make([]conf.V2Node, 0)
-	b64 := make([]byte, base64.RawStdEncoding.DecodedLen(len(res)))
-	d, err := base64.StdEncoding.Decode(b64, []byte(res))
-	if err != nil {
-		log.Panic(err)
-	}
-	subLinks := strings.Split(string(b64[:d]), "\n")
+	subLinks := strings.Split(b64.B64Decoder(res), "\n")
 	vmessLinks := make([]string, 0)
 	for _, l := range subLinks {
 		if strings.Index(l, "vmess://") == 0 {

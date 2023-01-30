@@ -7,21 +7,21 @@ import (
 )
 
 func main() {
-	args := os.Args
-	if len(args) < 2 {
+	a := os.Args
+	if len(a) < 2 {
 		help()
 		os.Exit(0)
 	}
-	parseArgs(args[1:])
+	parseArgs(a[1:])
 }
 
-func parseArgs(args []string) {
-	switch args[0] {
+func parseArgs(a []string) {
+	switch a[0] {
 	case "-h", "--help":
 		help()
 		os.Exit(0)
 	case "-sub":
-		sub.ParseArgs(args[1:])
+		sub.ParseArgs(a[1:])
 	case "-node":
 		fmt.Println("node")
 	default:

@@ -4,8 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"goV2Client/conf"
+	"goV2Client/node"
+	"goV2Client/tools/args"
 	"goV2Client/tools/b64"
-	"goV2Client/tools/params"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,25 +15,25 @@ import (
 )
 
 // 订阅相关的方法
-func ParseArgs(args []string) {
-	params.CheckArgsLen(args, 1)
-	switch args[0] {
+func ParseArgs(a []string) {
+	args.CheckArgsLen(a, 1)
+	switch a[0] {
 	//添加订阅
 	case "add":
-		params.CheckArgsLen(args, 3)
-		if args[1] != "" && args[2] != "" {
-			addSub(args[1], args[2])
+		args.CheckArgsLen(a, 3)
+		if a[1] != "" && a[2] != "" {
+			addSub(a[1], a[2])
 		} else {
 			log.Panicf("args error...")
 		}
 	case "update":
-		params.CheckArgsLen(args, 2)
+		args.CheckArgsLen(a, 2)
 		fmt.Println("sub update")
 	case "del":
-		params.CheckArgsLen(args, 2)
+		args.CheckArgsLen(a, 2)
 		fmt.Println("sub del")
 	case "list":
-		params.CheckArgsLen(args, 1)
+		args.CheckArgsLen(a, 1)
 		fmt.Println("sub list")
 	default:
 		fmt.Println("sub list")
@@ -89,10 +90,11 @@ func parseSub(res string, subName string) ([]conf.V2Node, error) {
 		return nil, err
 	}
 	for _, l := range vmessLinks {
+		config := node.ParseNode(l)
 		nodeList = append(nodeList, conf.V2Node{
-			SubName: subName,
-			Source:  l,
-			//ConfigJson: "123",
+			SubName:    subName,
+			Source:     l,
+			ConfigJson: config,
 		})
 	}
 	return nodeList, nil

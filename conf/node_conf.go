@@ -1,8 +1,8 @@
 package conf
 
 type V2Node struct {
-	SubName string
-	//Vmess      VmessJson
+	SubName    string
+	Vmess      VmessJson
 	Source     string
 	ConfigJson string
 }

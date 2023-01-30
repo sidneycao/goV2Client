@@ -56,7 +56,7 @@ func addSub(name string, url string) {
 }
 
 func getSub(sub conf.V2Sub) []conf.V2Node {
-	//对订阅链接发起curl get请求
+	//对订阅链接发起get请求
 	req, _ := http.NewRequest("GET", sub.Url, nil)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

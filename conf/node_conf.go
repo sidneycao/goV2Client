@@ -16,7 +16,7 @@ type VmessStuct struct {
 	Ps   string `json:"ps"`
 	Add  string `json:"add"`
 	Port int    `json:"port"`
-	Id   string `json:"id"`
+	ID   string `json:"id"`
 	Aid  string `json:"aid"`
 	Net  string `json:"net"`
 	Type string `json:"type"`

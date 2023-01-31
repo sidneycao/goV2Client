@@ -90,11 +90,11 @@ func parseSub(res string, subName string) ([]conf.V2Node, error) {
 		return nil, err
 	}
 	for _, l := range vmessLinks {
-		config := node.ParseNode(l)
+		v := node.ParseNode(l)
 		nodeList = append(nodeList, conf.V2Node{
 			SubName: subName,
 			Source:  l,
-			Vmess:   *config,
+			Vmess:   *v,
 			//ConfigJson: config,
 		})
 	}

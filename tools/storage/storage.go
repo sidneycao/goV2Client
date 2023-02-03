@@ -3,6 +3,7 @@ package storage
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 )
@@ -38,6 +39,7 @@ func Open(path string) *File {
 	} else {
 		f.isFile = true
 	}
+	fmt.Println(f)
 	return &f
 }
 

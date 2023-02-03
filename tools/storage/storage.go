@@ -27,12 +27,12 @@ func Open(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
 	sts, err := os.Stat(path)
-	fmt.Println("here1...")
 	if err != nil && errors.Is(err, os.ErrNotExist) {
 		f.isExist = false
 	} else {
 		f.isExist = true
 	}
+	fmt.Println("here1...")
 	f.path = path
 	//判断是文件还是目录
 	if sts.IsDir() {

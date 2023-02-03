@@ -124,8 +124,9 @@ var module = `{
 // 加载配置文件模板
 func LoadConfigModule() string {
 	// 检查配置文件目录是否存在
+	fmt.Println("here1...")
 	d := Open(configDir)
-	fmt.Println("here...")
+	fmt.Println("here2...")
 	if !d.isExist {
 		log.Printf("the config dir %s is not exists, creating...\n", configDir)
 		err := os.MkdirAll(d.path, os.ModePerm)

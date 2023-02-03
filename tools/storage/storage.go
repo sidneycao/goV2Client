@@ -32,7 +32,6 @@ func Open(path string) File {
 	} else {
 		f.isExist = true
 	}
-	fmt.Println(f)
 	f.path = path
 	//判断是文件还是目录
 	if sts.IsDir() {
@@ -40,6 +39,7 @@ func Open(path string) File {
 	} else {
 		f.isFile = true
 	}
+	fmt.Println(f)
 	return f
 }
 

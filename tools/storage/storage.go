@@ -33,14 +33,18 @@ func Open(path string) File {
 		f.isExist = true
 	}
 	f.path = path
-	/**
+
+	// 如果文件或目录不存在，就直接返回
+	if !f.isExist {
+		return f
+	}
+
 	//判断是文件还是目录
 	if sts.IsDir() {
 		f.isFile = false
 	} else {
 		f.isFile = true
 	}
-	**/
 	return f
 }
 

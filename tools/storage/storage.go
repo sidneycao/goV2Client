@@ -13,8 +13,8 @@ import (
 type File struct {
 	isExist bool
 	path    string
-	isFile  bool
-	file    *os.File
+	//isFile  bool
+	file *os.File
 }
 
 const W_APPEN = int(os.O_APPEND | os.O_CREATE | os.O_RDWR)
@@ -26,19 +26,21 @@ const W_NEW = int(os.O_CREATE | os.O_RDWR)
 func Open(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
-	sts, err := os.Stat(path)
+	_, err := os.Stat(path)
 	if err != nil && errors.Is(err, os.ErrNotExist) {
 		f.isExist = false
 	} else {
 		f.isExist = true
 	}
 	f.path = path
+	/**
 	//判断是文件还是目录
 	if sts.IsDir() {
 		f.isFile = false
 	} else {
 		f.isFile = true
 	}
+	**/
 	return f
 }
 

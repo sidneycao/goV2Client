@@ -91,36 +91,34 @@ const configDir = "/usr/local/etc/goV2Config"
 
 var configModule string = configDir + "/" + "config_module.json"
 
-var module = `{
-	{
-		"outbounds": [
-			{
-				"protocol": "vmess",
-				"tag": "default",
-				"settings": {
-					"vnext": [
-					   {
-						  "address": "{Add}",
-						  "port": {Port},
-						  "users": [
-							  {
-								  "encryption": "none",
-								  "id": "{ID}",
-								  "alterId": {Aid},
-								  "security": "auto"
-							  }
-						  ]
-					   }
-					]
-				},
-				"streamSettings":{
-					"sockopt": {
-						"mark": 255
+var module = `{ 
+	"outbounds": [
+		{
+			"protocol": "vmess",
+			"tag": "default",
+			"settings": {
+				"vnext": [
+					{
+						"address": "{Add}",
+						"port": {Port},
+						"users": [
+							{
+								"encryption": "none",
+								"id": "{ID}",
+								"alterId": {Aid},
+								"security": "auto"
+							}
+						]
 					}
+				]
+			},
+			"streamSettings":{
+				"sockopt": {
+					"mark": 255
 				}
 			}
-		]
-	}
+		}
+	]
 }`
 
 // 加载配置文件模板

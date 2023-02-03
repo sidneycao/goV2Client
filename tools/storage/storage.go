@@ -27,7 +27,8 @@ func Open(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
 	sts, err := os.Stat(path)
-	if errors.Is(err, os.ErrNotExist) {
+	fmt.Println("here1...")
+	if err != nil && errors.Is(err, os.ErrNotExist) {
 		f.isExist = false
 	} else {
 		f.isExist = true
@@ -124,7 +125,6 @@ var module = `{
 // 加载配置文件模板
 func LoadConfigModule() string {
 	// 检查配置文件目录是否存在
-	fmt.Println("here1...")
 	d := Open(configDir)
 	fmt.Println("here2...")
 	if !d.isExist {

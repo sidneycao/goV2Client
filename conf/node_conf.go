@@ -2,7 +2,6 @@ package conf
 
 import (
 	"encoding/json"
-	"fmt"
 	"goV2Client/tools/storage"
 	"log"
 	"strconv"
@@ -35,7 +34,6 @@ func ParseVmess2StructConf(vmessJson string) (*VmessStuct, string) {
 	if err != nil {
 		log.Panic("failed to unmarshall json to vmess struct...")
 	}
-	fmt.Println("success unmarshall")
 	return &v, ParseVmess2Conf(v)
 }
 

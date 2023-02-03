@@ -35,11 +35,13 @@ func Open(path string) File {
 	f.path = path
 	fmt.Println(f)
 	//判断是文件还是目录
+	/**
 	if sts.IsDir() {
 		f.isFile = false
 	} else {
 		f.isFile = true
 	}
+	**/
 	fmt.Println(f)
 	return f
 }

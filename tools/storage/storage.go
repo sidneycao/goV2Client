@@ -3,6 +3,7 @@ package storage
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 )
@@ -124,6 +125,7 @@ var module = `{
 func LoadConfigModule() string {
 	// 检查配置文件目录是否存在
 	d := Open(configDir)
+	fmt.Println("here...")
 	if !d.isExist {
 		log.Printf("the config dir %s is not exists, creating...\n", configDir)
 		err := os.MkdirAll(d.path, os.ModePerm)

@@ -13,8 +13,8 @@ import (
 type File struct {
 	isExist bool
 	path    string
-	//isFile  bool
-	file *os.File
+	isFile  bool
+	file    *os.File
 }
 
 const W_APPEN = int(os.O_APPEND | os.O_CREATE | os.O_RDWR)

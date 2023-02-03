@@ -26,7 +26,7 @@ const W_NEW = int(os.O_CREATE | os.O_RDWR)
 func Open(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
-	_, err := os.Stat(path)
+	sts, err := os.Stat(path)
 	if err != nil && errors.Is(err, os.ErrNotExist) {
 		f.isExist = false
 	} else {

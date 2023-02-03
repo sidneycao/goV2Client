@@ -147,6 +147,6 @@ func CreateConfigModule() {
 	f := Open(configModule)
 	err := f.Write(W_NEW, []string{module})
 	if err != nil {
-		log.Panic(err)
+		log.Panic("failed to create config module file...")
 	}
 }

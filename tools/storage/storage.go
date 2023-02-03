@@ -3,7 +3,6 @@ package storage
 import (
 	"bufio"
 	"errors"
-	"fmt"
 	"log"
 	"os"
 )
@@ -23,7 +22,7 @@ const W_NEW = int(os.O_CREATE | os.O_RDWR)
 // 其实不是打开文件
 // 而且检查文件或目录的属性
 // 新建结构体
-func Open(path string) *File {
+func Open(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
 	sts, err := os.Stat(path)
@@ -39,8 +38,7 @@ func Open(path string) *File {
 	} else {
 		f.isFile = true
 	}
-	fmt.Println(f)
-	return &f
+	return f
 }
 
 func (f *File) Read() ([]byte, error) {

@@ -2,7 +2,10 @@ package conf
 
 import (
 	"encoding/json"
+	"goV2Client/tools/storage"
 	"log"
+	"strconv"
+	"strings"
 )
 
 type V2Node struct {
@@ -25,15 +28,21 @@ type VmessStuct struct {
 
 // 通过vmess json
 // 返回vmess结构 和 v2ray config
-func ParseVmess2StructConf(vmessJson string) *VmessStuct {
+func ParseVmess2StructConf(vmessJson string) (*VmessStuct, string) {
 	var v VmessStuct
 	err := json.Unmarshal([]byte(vmessJson), &v)
 	if err != nil {
 		log.Panic(err)
 	}
-	return &v
+	return &v, ParseVmess2Conf(v)
 }
 
-func ParseVmess2Conf() {
+func ParseVmess2Conf(v VmessStuct) string {
+	m := storage.LoadConfigModule()
+	m = strings.Replace(m, "{Add}", v.Add, 1)
+	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port), 1)
+	m = strings.Replace(m, "{ID}", v.ID, 1)
+	m = strings.Replace(m, "{Aid}", v.Aid, 1)
 
+	return m
 }

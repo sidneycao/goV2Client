@@ -124,7 +124,7 @@ var module = `{
 // 加载配置文件模板
 func LoadConfigModule() string {
 	// 检查配置文件目录是否存在
-	fmt.Println("here1...")
+	fmt.Println("检查配置文件目录是否存在..")
 	d := Open(configDir)
 	fmt.Println("here2...")
 	if !d.isExist {

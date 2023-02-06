@@ -27,7 +27,7 @@ type VNodeStruct struct {
 }
 
 // 通过vmess json
-// 返回vmess结构 和 v2ray config
+// 返回VNode结构和v2ray config
 func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	var v VNodeStruct
 	err := json.Unmarshal([]byte(vmessJson), &v)
@@ -37,6 +37,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	return &v, Parse2Conf(v)
 }
 
+// 将VNode解析为v2ray config
 func Parse2Conf(v VNodeStruct) string {
 	m := storage.LoadConfigModule()
 	m = strings.Replace(m, "{Add}", v.Add, 1)

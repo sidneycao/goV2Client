@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-// 解析vmess链接
-// 返回一个vmess结构体 和 config字符串
+// 解析vmess链接为 vmess json
+// 返回一个VNode结构体 和 config字符串
 func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 	if strings.Index(vmessLink, "vmess://") == 0 {
 		vmessJson := b64.B64Decoder(vmessLink[8:])

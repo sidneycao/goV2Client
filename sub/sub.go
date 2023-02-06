@@ -53,7 +53,10 @@ func addSub(name string, url string) {
 	}
 	log.Println("sub url is:", sub.Url)
 	nodeList := getSub(sub)
-	fmt.Println(nodeList)
+	if len(nodeList) == 0 {
+		log.Panic("node list is empty...")
+	}
+	log.Printf("success, got %d nodes config...\n", len(nodeList))
 }
 
 // 对订阅链接发起get请求 获取返回后的加密文本

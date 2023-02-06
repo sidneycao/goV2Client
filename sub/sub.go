@@ -10,7 +10,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -43,11 +42,10 @@ func ParseArgs(a []string) {
 // 添加订阅
 func addSub(name string, url string) {
 	log.Println("starting add sub...")
-	if _, value := conf.SubConfig[name]; value {
-		log.Println("sub name already exist...")
-		os.Exit(0)
+	if _, value := conf.SubListNow[name]; value {
+		log.Panic("sub name already exist...")
 	}
-	sub := conf.V2Sub{
+	sub := conf.VSub{
 		Name: name,
 		Url:  url,
 	}
@@ -61,7 +59,7 @@ func addSub(name string, url string) {
 
 // 对订阅链接发起get请求 获取返回后的加密文本
 // 解密加密文本 获取节点列表
-func getSub(sub conf.V2Sub) []conf.V2Node {
+func getSub(sub conf.VSub) []conf.VNode {
 	//对订阅链接发起get请求
 	req, _ := http.NewRequest("GET", sub.Url, nil)
 	res, err := http.DefaultClient.Do(req)
@@ -75,14 +73,14 @@ func getSub(sub conf.V2Sub) []conf.V2Node {
 	}
 	nodeList, err := parseSub(string(body), sub.Name)
 	if err != nil {
-		log.Panic(err.Error())
+		log.Panic(err)
 	}
 	return nodeList
 }
 
 // 解密加密文本 获取节点列表
-func parseSub(res string, subName string) ([]conf.V2Node, error) {
-	nodeList := make([]conf.V2Node, 0)
+func parseSub(res string, subName string) ([]conf.VNode, error) {
+	nodeList := make([]conf.VNode, 0)
 	subLinks := strings.Split(b64.B64Decoder(res), "\n")
 	vmessLinks := make([]string, 0)
 
@@ -100,7 +98,7 @@ func parseSub(res string, subName string) ([]conf.V2Node, error) {
 	// 逐行处理解密，返回node列表
 	for _, l := range vmessLinks {
 		v, c := node.ParseNode(l)
-		nodeList = append(nodeList, conf.V2Node{
+		nodeList = append(nodeList, conf.VNode{
 			SubName:    subName,
 			Source:     l,
 			Vmess:      *v,

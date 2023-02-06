@@ -8,14 +8,14 @@ import (
 	"strings"
 )
 
-type V2Node struct {
+type VNode struct {
 	SubName    string
-	Vmess      VmessStuct //解析后的vmess json的结构
-	Source     string     //原始vmess链接  vmess://
-	ConfigJson string     //通过解析后的vmess json 转换得到的 v2ray config
+	Vmess      VNodeStruct //解析后的vmess json的结构
+	Source     string      //原始vmess链接  vmess://
+	ConfigJson string      //通过解析后的vmess json 转换得到的 v2ray config
 }
 
-type VmessStuct struct {
+type VNodeStruct struct {
 	Ps   string `json:"ps"`
 	Add  string `json:"add"`
 	Port int    `json:"port"`
@@ -28,16 +28,16 @@ type VmessStuct struct {
 
 // 通过vmess json
 // 返回vmess结构 和 v2ray config
-func ParseVmess2StructConf(vmessJson string) (*VmessStuct, string) {
-	var v VmessStuct
+func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
+	var v VNodeStruct
 	err := json.Unmarshal([]byte(vmessJson), &v)
 	if err != nil {
 		log.Panic("failed to unmarshall json to vmess struct...")
 	}
-	return &v, ParseVmess2Conf(v)
+	return &v, Parse2Conf(v)
 }
 
-func ParseVmess2Conf(v VmessStuct) string {
+func Parse2Conf(v VNodeStruct) string {
 	m := storage.LoadConfigModule()
 	m = strings.Replace(m, "{Add}", v.Add, 1)
 	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port), 1)

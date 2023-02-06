@@ -1,8 +1,8 @@
 package conf
 
-type V2Sub struct {
+type VSub struct {
 	Name string
 	Url  string
 }
 
-var SubConfig map[string]V2Sub = map[string]V2Sub{}
+var SubListNow map[string]VSub = map[string]VSub{}

@@ -2,7 +2,6 @@ package storage
 
 import (
 	"log"
-	"os"
 )
 
 const configDir = "/usr/local/etc/goV2Config"
@@ -42,16 +41,16 @@ var module = `{
 // 加载配置文件模板
 func LoadConfigModule() string {
 	// 检查配置文件目录是否存在
-	d := Open(configDir)
+	d := OpenFile(configDir)
 	if !d.isExist {
 		log.Printf("the config dir %s is not exists, creating...\n", configDir)
-		err := os.MkdirAll(d.path, os.ModePerm)
+		err := d.CreateDir()
 		if err != nil {
 			log.Panic("failed to create the config dir... ")
 		}
 	}
 	// 读取配置文件模板  如果不存在就创建
-	f := Open(configModule)
+	f := OpenFile(configModule)
 	r, err := f.Read()
 	if err == nil && string(r) != "" {
 		return string(r)
@@ -63,7 +62,7 @@ func LoadConfigModule() string {
 
 // 创建配置文件模板
 func CreateConfigModule() {
-	f := Open(configModule)
+	f := OpenFile(configModule)
 	err := f.Write(W_NEW, []string{module})
 	if err != nil {
 		log.Panic("failed to create config module file...")
@@ -71,9 +70,9 @@ func CreateConfigModule() {
 }
 
 func WriteConfig(d string, path string) {
-	f := Open(path)
+	f := OpenFile(path)
+
 	if !f.isExist {
-
+		f.Write(W_NEW)
 	}
-
 }

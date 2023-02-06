@@ -13,7 +13,7 @@ type File struct {
 	isExist bool
 	path    string
 	isFile  bool
-	file    *os.File
+	//file    *os.File
 }
 
 const W_APPEN = int(os.O_APPEND | os.O_CREATE | os.O_RDWR)
@@ -22,7 +22,7 @@ const W_NEW = int(os.O_CREATE | os.O_RDWR)
 // 其实不是打开文件
 // 而且检查文件或目录的属性
 // 新建结构体
-func Open(path string) File {
+func OpenFile(path string) File {
 	f := File{}
 	//判断文件或目录是否存在
 	sts, err := os.Stat(path)
@@ -33,7 +33,7 @@ func Open(path string) File {
 	}
 	f.path = path
 
-	// 如果文件或目录不存在，就直接返回
+	// 如果文件或目录不存在
 	if !f.isExist {
 		return f
 	}
@@ -47,6 +47,7 @@ func Open(path string) File {
 	return f
 }
 
+// 读文件
 func (f *File) Read() ([]byte, error) {
 	ff, err := os.OpenFile(f.path, os.O_RDONLY, os.FileMode(0777))
 	if err != nil {
@@ -71,6 +72,8 @@ func (f *File) Read() ([]byte, error) {
 	return bufRes, nil
 }
 
+// 文件不存在会创建
+// 根据writeType确定是覆盖写还是append写
 func (f *File) Write(writeType int, b []string) error {
 	ff, err := os.OpenFile(f.path, writeType, os.FileMode(0777))
 	if err != nil {
@@ -88,4 +91,41 @@ func (f *File) Write(writeType int, b []string) error {
 		}
 	}
 	return nil
+}
+
+// 创建目录
+func (f *File) CreateDir() error {
+	err := os.MkdirAll(f.path, os.ModePerm)
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+// 删除
+func (f *File) Delete() {
+	if !f.isExist {
+		return
+	}
+	if f.isFile {
+		err := os.Remove(f.path)
+		if err != nil {
+			log.Panic(err)
+		}
+		f.refresh(f.path)
+		return
+	} else {
+		err := os.RemoveAll(f.path)
+		if err != nil {
+			log.Panic(err)
+		}
+		f.refresh(f.path)
+		return
+	}
+
+}
+
+func (f *File) refresh(path string) {
+	*f = OpenFile(path)
 }

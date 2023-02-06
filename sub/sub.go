@@ -42,7 +42,7 @@ func ParseArgs(a []string) {
 // 添加订阅
 func addSub(name string, url string) {
 	log.Println("starting add sub...")
-	if _, value := conf.SubListNow[name]; value {
+	if _, value := conf.SubConfigNow[name]; value {
 		log.Panic("sub name already exist...")
 	}
 	sub := conf.VSub{
@@ -55,6 +55,10 @@ func addSub(name string, url string) {
 		log.Panic("node list is empty...")
 	}
 	log.Printf("success, got %d node configs...\n", len(nodeList))
+	// 保存数据
+	conf.NodeConfigNow.NodeList = append(conf.NodeConfigNow.NodeList, nodeList...)
+	conf.SubConfigNow[name] = sub
+
 }
 
 // 对订阅链接发起get请求 获取返回后的加密文本

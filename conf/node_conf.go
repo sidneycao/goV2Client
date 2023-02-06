@@ -26,6 +26,13 @@ type VNodeStruct struct {
 	//TLS  string `json:"tls"`
 }
 
+type VNodeConfig struct {
+	Id       int
+	NodeList []VNode
+}
+
+var NodeConfigNow VNodeConfig
+
 // 通过vmess json
 // 返回VNode结构和v2ray config
 func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {

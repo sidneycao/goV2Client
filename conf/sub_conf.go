@@ -5,4 +5,4 @@ type VSub struct {
 	Url  string
 }
 
-var SubListNow map[string]VSub = map[string]VSub{}
+var SubConfigNow map[string]VSub = map[string]VSub{}

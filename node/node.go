@@ -12,7 +12,7 @@ import (
 func ParseNode(vmessLink string) (*conf.VmessStuct, string) {
 	if strings.Index(vmessLink, "vmess://") == 0 {
 		vmessJson := b64.B64Decoder(vmessLink[8:])
-		log.Println("get vmess json:", vmessJson)
+		log.Println("got vmess json:", vmessJson)
 		return conf.ParseVmess2StructConf(vmessJson)
 	} else {
 		return nil, ""

@@ -56,7 +56,7 @@ func addSub(name string, url string) {
 	if len(nodeList) == 0 {
 		log.Panic("node list is empty...")
 	}
-	log.Printf("success, got %d nodes config...\n", len(nodeList))
+	log.Printf("success, got %d nodes' config...\n", len(nodeList))
 }
 
 // 对订阅链接发起get请求 获取返回后的加密文本

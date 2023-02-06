@@ -40,7 +40,7 @@ func ParseArgs(a []string) {
 	}
 }
 
-//添加订阅
+// 添加订阅
 func addSub(name string, url string) {
 	log.Println("starting add sub...")
 	if _, value := conf.SubConfig[name]; value {
@@ -56,6 +56,8 @@ func addSub(name string, url string) {
 	fmt.Println(nodeList)
 }
 
+// 对订阅链接发起get请求 获取返回后的加密文本
+// 解密加密文本 获取节点列表
 func getSub(sub conf.V2Sub) []conf.V2Node {
 	//对订阅链接发起get请求
 	req, _ := http.NewRequest("GET", sub.Url, nil)
@@ -75,11 +77,13 @@ func getSub(sub conf.V2Sub) []conf.V2Node {
 	return nodeList
 }
 
-//解析订阅链接
+// 解密加密文本 获取节点列表
 func parseSub(res string, subName string) ([]conf.V2Node, error) {
 	nodeList := make([]conf.V2Node, 0)
 	subLinks := strings.Split(b64.B64Decoder(res), "\n")
 	vmessLinks := make([]string, 0)
+
+	// 过滤一遍数组，去除不符合要求的字符串
 	for _, l := range subLinks {
 		if strings.Index(l, "vmess://") == 0 {
 			vmessLinks = append(vmessLinks, l)
@@ -89,6 +93,8 @@ func parseSub(res string, subName string) ([]conf.V2Node, error) {
 		err := errors.New("no vmess link found")
 		return nil, err
 	}
+
+	// 逐行处理解密，返回node列表
 	for _, l := range vmessLinks {
 		v, c := node.ParseNode(l)
 		nodeList = append(nodeList, conf.V2Node{

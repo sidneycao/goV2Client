@@ -27,7 +27,7 @@ func WriteLocalConfig(subConfig map[string]VSub, nodeConfig VNodeConfig) {
 	}
 }
 
-func LoadConfig() {
+func LoadLocalConfig() {
 	if !initFlag {
 		subConfigBytes := storage.ReadConfig(subConfigFile)
 		if string(subConfigBytes) != "" {

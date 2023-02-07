@@ -27,6 +27,7 @@ type VNodeStruct struct {
 }
 
 type VNodeConfig struct {
+	// Id记录的是当前使用的是哪个节点
 	Id       int
 	NodeList []VNode
 }

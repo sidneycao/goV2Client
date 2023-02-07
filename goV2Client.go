@@ -14,7 +14,7 @@ func main() {
 		help()
 		os.Exit(0)
 	}
-	conf.LoadConfig()
+	conf.LoadLocalConfig()
 	parseArgs(a[1:])
 }
 

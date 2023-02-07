@@ -5,7 +5,9 @@ import (
 	"goV2Client/conf"
 	"goV2Client/tools/args"
 	"goV2Client/tools/b64"
+	"goV2Client/tools/output"
 	"log"
+	"strconv"
 	"strings"
 )
 
@@ -19,9 +21,9 @@ func ParseArgs(a []string) {
 		fmt.Println("node set")
 	case "list":
 		args.CheckArgsLen(a, 1)
-		fmt.Println("node list")
+		ListServer()
 	default:
-		fmt.Println("node list")
+		ListServer()
 	}
 }
 
@@ -37,37 +39,34 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 	}
 }
 
-/**
-
 func ListServer() {
 	fmt.Println("=======================================================")
 	fmt.Println(
-		putil.F("ID", 4),
-		putil.F("别名", 50),
-		putil.F("地址", 24),
-		putil.F("端口", 10),
-		putil.F("类型", 5),
+		output.F("ID", 4),
+		output.F("别名", 50),
+		output.F("地址", 24),
+		output.F("端口", 10),
+		output.F("类型", 5),
 	)
-	for i, config := range conf.ServerConfigNow.ServerList {
-		if i == conf.ServerConfigNow.Id {
+	for i, config := range conf.NodeConfigNow.NodeList {
+		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
-				putil.F("["+strconv.Itoa(i)+"]", 4),
-				putil.F(config.Vmess.Ps, 50),
-				putil.F(config.Vmess.Add, 24),
-				putil.F(config.Vmess.Port, 10),
-				putil.F(config.Vmess.Type, 5),
+				output.F("["+strconv.Itoa(i)+"]", 4),
+				output.F(config.Vmess.Ps, 50),
+				output.F(config.Vmess.Add, 24),
+				output.F(strconv.Itoa(config.Vmess.Port), 10),
+				output.F(config.Vmess.Type, 5),
 			)
 		} else {
 			fmt.Println(
-				putil.F(" "+strconv.Itoa(i), 4),
-				putil.F(config.Vmess.Ps, 50),
-				putil.F(config.Vmess.Add, 24),
-				putil.F(config.Vmess.Port, 10),
-				putil.F(config.Vmess.Type, 5),
+				output.F(" "+strconv.Itoa(i), 4),
+				output.F(config.Vmess.Ps, 50),
+				output.F(config.Vmess.Add, 24),
+				output.F(strconv.Itoa(config.Vmess.Port), 10),
+				output.F(config.Vmess.Type, 5),
 			)
 		}
 	}
 	fmt.Println("=======================================================")
 
 }
-**/

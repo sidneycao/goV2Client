@@ -82,3 +82,18 @@ func WriteConfig(d string, fileName string) {
 		log.Panicf("write to config file %s because of %e", localFile, err)
 	}
 }
+
+func ReadConfig(fileName string) []byte {
+	localFile := configDir + "/" + fileName
+	f := OpenFile(localFile)
+
+	if !f.isExist {
+		log.Panicf("config file %s is not exits...", localFile)
+	}
+
+	r, err := f.Read()
+	if err != nil {
+		log.Panicf("failed to read config file %s...", localFile)
+	}
+	return r
+}

@@ -59,6 +59,8 @@ func addSub(name string, url string) {
 	conf.NodeConfigNow.NodeList = append(conf.NodeConfigNow.NodeList, nodeList...)
 	conf.SubConfigNow[name] = sub
 
+	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+
 }
 
 // 对订阅链接发起get请求 获取返回后的加密文本

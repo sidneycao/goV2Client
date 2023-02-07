@@ -69,10 +69,16 @@ func CreateConfigModule() {
 	}
 }
 
-func WriteConfig(d string, path string) {
-	f := OpenFile(path)
+func WriteConfig(d string, fileName string) {
+	localFile := configDir + "/" + fileName
+	f := OpenFile(localFile)
 
-	if !f.isExist {
-		f.Write(W_NEW)
+	if f.isExist {
+		f.Delete()
+	}
+
+	err := f.Write(W_NEW, []string{d})
+	if err != nil {
+		log.Panicf("write to config file %s because of %e", localFile, err)
 	}
 }

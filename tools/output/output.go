@@ -13,7 +13,7 @@ func F(str string, maxLen int) string {
 	}
 	if lNow < maxLen {
 		for i := 0; i < (maxLen - lNow); i++ {
-			str += ""
+			str += " "
 		}
 	}
 	return str

@@ -93,7 +93,7 @@ func ReadConfig(fileName string) []byte {
 
 	r, err := f.Read()
 	if err != nil {
-		log.Panicf("failed to read config file %s...", localFile)
+		log.Panicf("failed to read config file %s because of %e...", localFile, err)
 	}
 	return r
 }

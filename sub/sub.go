@@ -33,7 +33,7 @@ func ParseArgs(a []string) {
 		fmt.Println("sub del")
 	case "list":
 		args.CheckArgsLen(a, 1)
-		fmt.Println("sub list")
+		listSub()
 	default:
 		fmt.Println("sub list")
 	}
@@ -112,4 +112,13 @@ func parseSub(res string, subName string) ([]conf.VNode, error) {
 		})
 	}
 	return nodeList, nil
+}
+
+func listSub() {
+	fmt.Println("=======================================================")
+	fmt.Println("name          ", "url")
+	for name, sub := range conf.SubConfigNow {
+		fmt.Println(name, "           ", sub.Url)
+	}
+	fmt.Println("=======================================================")
 }

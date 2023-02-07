@@ -35,7 +35,7 @@ func ParseArgs(a []string) {
 		args.CheckArgsLen(a, 1)
 		listSub()
 	default:
-		fmt.Println("sub list")
+		listSub()
 	}
 }
 

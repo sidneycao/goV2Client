@@ -42,7 +42,7 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 func ListServer() {
 	fmt.Println("=======================================================")
 	fmt.Println(
-		output.F("ID", 6),
+		output.F("ID", 4),
 		output.F("别名", 30),
 		output.F("地址", 24),
 		output.F("端口", 10),
@@ -51,8 +51,7 @@ func ListServer() {
 	for i, config := range conf.NodeConfigNow.NodeList {
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
-				"\033[32m",
-				output.F("["+strconv.Itoa(i)+"]", 6),
+				output.F("\033[32m"+"["+strconv.Itoa(i)+"]", 4),
 				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 24),
 				output.F(strconv.Itoa(config.Vmess.Port), 10),
@@ -61,7 +60,7 @@ func ListServer() {
 			)
 		} else {
 			fmt.Println(
-				output.F(" "+strconv.Itoa(i), 6),
+				output.F(" "+strconv.Itoa(i), 4),
 				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 24),
 				output.F(strconv.Itoa(config.Vmess.Port), 10),

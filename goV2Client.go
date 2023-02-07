@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goV2Client/conf"
 	"goV2Client/sub"
 	"os"
 )
@@ -12,6 +13,7 @@ func main() {
 		help()
 		os.Exit(0)
 	}
+	conf.LoadConfig()
 	parseArgs(a[1:])
 }
 

@@ -21,7 +21,7 @@ func ParseArgs(a []string) {
 	case "add":
 		args.CheckArgsLen(a, 3)
 		if a[1] != "" && a[2] != "" {
-			addSub(a[1], a[2])
+			AddSub(a[1], a[2])
 		} else {
 			log.Panicf("args error...")
 		}
@@ -33,14 +33,14 @@ func ParseArgs(a []string) {
 		fmt.Println("sub del")
 	case "list":
 		args.CheckArgsLen(a, 1)
-		listSub()
+		ListSub()
 	default:
-		listSub()
+		ListSub()
 	}
 }
 
 // 添加订阅
-func addSub(name string, url string) {
+func AddSub(name string, url string) {
 	log.Println("starting add sub...")
 	if _, value := conf.SubConfigNow[name]; value {
 		log.Panic("sub name already exist...")
@@ -50,7 +50,7 @@ func addSub(name string, url string) {
 		Url:  url,
 	}
 	log.Println("sub url is:", sub.Url)
-	nodeList := getSub(sub)
+	nodeList := GetSub(sub)
 	if len(nodeList) == 0 {
 		log.Panic("node list is empty...")
 	}
@@ -65,7 +65,7 @@ func addSub(name string, url string) {
 
 // 对订阅链接发起get请求 获取返回后的加密文本
 // 解密加密文本 获取节点列表
-func getSub(sub conf.VSub) []conf.VNode {
+func GetSub(sub conf.VSub) []conf.VNode {
 	//对订阅链接发起get请求
 	req, _ := http.NewRequest("GET", sub.Url, nil)
 	res, err := http.DefaultClient.Do(req)
@@ -77,7 +77,7 @@ func getSub(sub conf.VSub) []conf.VNode {
 	if err != nil {
 		log.Panic(err)
 	}
-	nodeList, err := parseSub(string(body), sub.Name)
+	nodeList, err := ParseSub(string(body), sub.Name)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -85,7 +85,7 @@ func getSub(sub conf.VSub) []conf.VNode {
 }
 
 // 解密加密文本 获取节点列表
-func parseSub(res string, subName string) ([]conf.VNode, error) {
+func ParseSub(res string, subName string) ([]conf.VNode, error) {
 	nodeList := make([]conf.VNode, 0)
 	subLinks := strings.Split(b64.B64Decoder(res), "\n")
 	vmessLinks := make([]string, 0)
@@ -114,7 +114,7 @@ func parseSub(res string, subName string) ([]conf.VNode, error) {
 	return nodeList, nil
 }
 
-func listSub() {
+func ListSub() {
 	fmt.Println("=======================================================")
 	fmt.Println("name          ", "url")
 	for name, sub := range conf.SubConfigNow {

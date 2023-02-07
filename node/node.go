@@ -36,3 +36,38 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 		return nil, ""
 	}
 }
+
+/**
+
+func ListServer() {
+	fmt.Println("=======================================================")
+	fmt.Println(
+		putil.F("ID", 4),
+		putil.F("别名", 50),
+		putil.F("地址", 24),
+		putil.F("端口", 10),
+		putil.F("类型", 5),
+	)
+	for i, config := range conf.ServerConfigNow.ServerList {
+		if i == conf.ServerConfigNow.Id {
+			fmt.Println(
+				putil.F("["+strconv.Itoa(i)+"]", 4),
+				putil.F(config.Vmess.Ps, 50),
+				putil.F(config.Vmess.Add, 24),
+				putil.F(config.Vmess.Port, 10),
+				putil.F(config.Vmess.Type, 5),
+			)
+		} else {
+			fmt.Println(
+				putil.F(" "+strconv.Itoa(i), 4),
+				putil.F(config.Vmess.Ps, 50),
+				putil.F(config.Vmess.Add, 24),
+				putil.F(config.Vmess.Port, 10),
+				putil.F(config.Vmess.Type, 5),
+			)
+		}
+	}
+	fmt.Println("=======================================================")
+
+}
+**/

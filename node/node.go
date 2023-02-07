@@ -43,7 +43,7 @@ func ListServer() {
 	fmt.Println("=======================================================")
 	fmt.Println(
 		output.F("ID", 4),
-		output.F("别名", 50),
+		output.F("别名", 30),
 		output.F("地址", 24),
 		output.F("端口", 10),
 		output.F("类型", 5),
@@ -52,7 +52,7 @@ func ListServer() {
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
 				output.F("["+strconv.Itoa(i)+"]", 4),
-				output.F(config.Vmess.Ps, 50),
+				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 24),
 				output.F(strconv.Itoa(config.Vmess.Port), 10),
 				output.F(config.Vmess.Type, 5),
@@ -60,7 +60,7 @@ func ListServer() {
 		} else {
 			fmt.Println(
 				output.F(" "+strconv.Itoa(i), 4),
-				output.F(config.Vmess.Ps, 50),
+				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 24),
 				output.F(strconv.Itoa(config.Vmess.Port), 10),
 				output.F(config.Vmess.Type, 5),

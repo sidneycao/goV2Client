@@ -51,7 +51,8 @@ func ListServer() {
 	for i, config := range conf.NodeConfigNow.NodeList {
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
-				output.F("\033[32m"+"["+strconv.Itoa(i)+"]", 4),
+				"\033[32m",
+				output.F("["+strconv.Itoa(i)+"]", 4),
 				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 24),
 				output.F(strconv.Itoa(config.Vmess.Port), 10),

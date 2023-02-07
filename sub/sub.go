@@ -7,6 +7,7 @@ import (
 	"goV2Client/node"
 	"goV2Client/tools/args"
 	"goV2Client/tools/b64"
+	"goV2Client/tools/output"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -118,7 +119,7 @@ func ListSub() {
 	fmt.Println("=======================================================")
 	fmt.Println("name          ", "url")
 	for name, sub := range conf.SubConfigNow {
-		fmt.Println(name, "           ", sub.Url)
+		fmt.Println(output.F(name, 10), sub.Url)
 	}
 	fmt.Println("=======================================================")
 }

@@ -3,6 +3,7 @@ package storage
 import (
 	"bufio"
 	"errors"
+	"io"
 	"log"
 	"os"
 )
@@ -60,7 +61,7 @@ func (f *File) Read() ([]byte, error) {
 	bufTemp := make([]byte, 1024)
 	for {
 		n, err := r.Read(bufTemp)
-		if err != nil {
+		if err != nil && err != io.EOF {
 			return nil, err
 		}
 		if n == 0 {

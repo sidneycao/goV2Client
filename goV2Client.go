@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"goV2Client/conf"
+	"goV2Client/node"
 	"goV2Client/sub"
 	"os"
 )
@@ -25,7 +26,7 @@ func parseArgs(a []string) {
 	case "-sub":
 		sub.ParseArgs(a[1:])
 	case "-node":
-		fmt.Println("node")
+		node.ParseArgs(a[1:])
 	default:
 		help()
 		os.Exit(0)

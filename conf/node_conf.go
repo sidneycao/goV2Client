@@ -40,7 +40,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	var v VNodeStruct
 	err := json.Unmarshal([]byte(vmessJson), &v)
 	if err != nil {
-		log.Panic("failed to unmarshall json to vmess struct...")
+		log.Panicf("failed to unmarshall json to vmess struct because of %e...", err)
 	}
 	return &v, Parse2Conf(v)
 }

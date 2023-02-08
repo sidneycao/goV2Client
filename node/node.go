@@ -54,7 +54,7 @@ func ListServer() {
 				"\033[32m",
 				output.F("["+strconv.Itoa(i)+"]", 5),
 				output.F(config.Vmess.Ps, 30),
-				output.F(config.Vmess.Add, 24),
+				output.F(config.Vmess.Add, 40),
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Type, 5),
@@ -64,7 +64,7 @@ func ListServer() {
 			fmt.Println(
 				output.F(" "+strconv.Itoa(i), 5),
 				output.F(config.Vmess.Ps, 30),
-				output.F(config.Vmess.Add, 24),
+				output.F(config.Vmess.Add, 40),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Type, 5),
 			)

@@ -19,7 +19,7 @@ type VNode struct {
 type VNodeStruct struct {
 	Ps   string      `json:"ps"`
 	Add  string      `json:"add"`
-	Port interface{} `json:"port"`
+	Port interface{} `json:"port"` //这里使用interface是为了兼容string和float64的格式
 	ID   string      `json:"id"`
 	Aid  string      `json:"aid"`
 	Net  string      `json:"net"`
@@ -43,6 +43,8 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	if err != nil {
 		log.Panicf("failed to unmarshall json to vmess struct because of %e...", err)
 	}
+
+	//无论port类型是float64还是string 最后都转为int
 	if reflect.TypeOf(v.Port).Kind() == reflect.String {
 		n, err := strconv.Atoi(v.Port.(string))
 		if err != nil {
@@ -60,6 +62,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 func Parse2Conf(v VNodeStruct) string {
 	m := storage.LoadConfigModule()
 	m = strings.Replace(m, "{Add}", v.Add, 1)
+	//Port 由int转为string
 	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port.(int)), 1)
 	m = strings.Replace(m, "{ID}", v.ID, 1)
 	m = strings.Replace(m, "{Aid}", v.Aid, 1)

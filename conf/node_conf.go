@@ -43,7 +43,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	if err != nil {
 		log.Panicf("failed to unmarshall json to vmess struct because of %e...", err)
 	}
-	if reflect.TypeOf(v.Port).Kind() == reflect.String {
+	if reflect.TypeOf(v.Port).Kind() != reflect.Int {
 		n, err := strconv.Atoi(v.Port.(string))
 		if err != nil {
 			log.Panic(err)

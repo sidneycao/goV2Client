@@ -93,19 +93,19 @@ func ReadConfig(fileName string) []byte {
 		log.Printf("the config dir %s is not exists, creating...\n", configDir)
 		err := d.CreateDir()
 		if err != nil {
-			log.Panic("failed to create the config dir... ")
+			log.Println("failed to create the config dir... ")
 		}
 	}
 	localFile := configDir + "/" + fileName
 	f := OpenFile(localFile)
 
 	if !f.isExist {
-		log.Panicf("config file %s is not exits...", localFile)
+		log.Printf("config file %s is not exits...", localFile)
 	}
 
 	r, err := f.Read()
 	if err != nil {
-		log.Panicf("failed to read config file %s because of %e...", localFile, err)
+		log.Printf("failed to read config file %s because of %e...", localFile, err)
 	}
 	return r
 }

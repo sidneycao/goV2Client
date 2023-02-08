@@ -126,8 +126,8 @@ func ListSub() {
 
 func RemoveSubByName(input string) {
 	log.Println("starting delete sub...")
-	for n := range conf.SubConfigNow {
-		if n == input {
+	for name := range conf.SubConfigNow {
+		if name == input {
 			// 删除订阅
 			delete(conf.SubConfigNow, n)
 

@@ -133,8 +133,8 @@ func RemoveSubByName(input string) {
 
 			// 删除节点
 			newNodeList := make([]conf.VNode, 0)
-			for _, n := range conf.NodeConfigNow.NodeList {
-				if n.SubName != input {
+			for _, node := range conf.NodeConfigNow.NodeList {
+				if node.SubName != input {
 					newNodeList = append(newNodeList, n)
 				}
 			}

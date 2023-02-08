@@ -140,6 +140,8 @@ func RemoveSubByName(input string) {
 			}
 			conf.NodeConfigNow.NodeList = newNodeList
 			conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+			return
 		}
 	}
+	log.Printf("there is no sub named %s\n", input)
 }

@@ -44,7 +44,7 @@ func ListServer() {
 	fmt.Println(
 		output.F("ID", 5),
 		output.F("别名", 30),
-		output.F("地址", 24),
+		output.F("地址", 40),
 		output.F("端口", 10),
 		output.F("类型", 5),
 	)

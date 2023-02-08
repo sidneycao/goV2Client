@@ -24,9 +24,9 @@ func parseArgs(a []string) {
 	case "-h", "--help":
 		help()
 		os.Exit(0)
-	case "-sub":
+	case "--sub":
 		sub.ParseArgs(a[1:])
-	case "-node":
+	case "--node":
 		node.ParseArgs(a[1:])
 	default:
 		help()
@@ -37,18 +37,18 @@ func parseArgs(a []string) {
 func help() {
 	fmt.Println(
 		`订阅管理：
-    -sub add(a) {name} {url}
+    --sub --add(-a) {name} {url}
         添加一个订阅，订阅后节点添加到node list
-    -sub update(u) {name}
+    --sub --update(-u) {name}
         更新订阅
-    -sub del(d) {name}
+    --sub --del(-d) {name}
         删除订阅
-    -sub list(l) 
+    --sub --list(-l) 
         查看所有订阅
 节点管理：
-    -node list(l)
+    --node --list(-l)
         查看所有节点
-    -node set(s) {node_id}
+    --node --set(-s) {node_id}
         使用该节点
 其他:
     -h, --help

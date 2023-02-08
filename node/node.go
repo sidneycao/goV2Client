@@ -16,10 +16,10 @@ func ParseArgs(a []string) {
 	args.CheckArgsLen(a, 1)
 	switch a[0] {
 	//添加订阅
-	case "set", "s":
+	case "--set", "-s":
 		args.CheckArgsLen(a, 1)
 		fmt.Println("node set")
-	case "list", "l":
+	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListServer()
 	default:

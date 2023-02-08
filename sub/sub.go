@@ -19,20 +19,20 @@ func ParseArgs(a []string) {
 	args.CheckArgsLen(a, 1)
 	switch a[0] {
 	//添加订阅
-	case "add", "a":
+	case "--add", "-a":
 		args.CheckArgsLen(a, 3)
 		if a[1] != "" && a[2] != "" {
 			AddSub(a[1], a[2])
 		} else {
 			log.Panicf("args error...")
 		}
-	case "update", "u":
+	case "--update", "-u":
 		args.CheckArgsLen(a, 2)
 		fmt.Println("sub update")
-	case "del", "d":
+	case "--del", "-d":
 		args.CheckArgsLen(a, 2)
 		fmt.Println("sub del")
-	case "list", "l":
+	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListSub()
 	default:

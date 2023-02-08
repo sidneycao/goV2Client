@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"goV2Client/tools/storage"
 	"log"
+	"reflect"
+	"strconv"
 	"strings"
 )
 
@@ -41,6 +43,13 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	if err != nil {
 		log.Panicf("failed to unmarshall json to vmess struct because of %e...", err)
 	}
+	if reflect.TypeOf(v.Port).Kind() == reflect.String {
+		n, err := strconv.Atoi(v.Port.(string))
+		if err != nil {
+			log.Panic(err)
+		}
+		v.Port = n
+	}
 
 	return &v, Parse2Conf(v)
 }
@@ -49,7 +58,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 func Parse2Conf(v VNodeStruct) string {
 	m := storage.LoadConfigModule()
 	m = strings.Replace(m, "{Add}", v.Add, 1)
-	m = strings.Replace(m, "{Port}", v.Port.(string), 1)
+	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port.(int)), 1)
 	m = strings.Replace(m, "{ID}", v.ID, 1)
 	m = strings.Replace(m, "{Aid}", v.Aid, 1)
 

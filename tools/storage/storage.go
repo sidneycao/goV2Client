@@ -40,6 +40,7 @@ var module = `{
 
 // 加载配置文件模板
 func LoadConfigModule() string {
+	/**
 	// 检查配置文件目录是否存在
 	d := OpenFile(configDir)
 	if !d.isExist {
@@ -49,6 +50,8 @@ func LoadConfigModule() string {
 			log.Panic("failed to create the config dir... ")
 		}
 	}
+	**/
+
 	// 读取配置文件模板  如果不存在就创建
 	f := OpenFile(configModule)
 	r, err := f.Read()
@@ -84,6 +87,15 @@ func WriteConfig(d string, fileName string) {
 }
 
 func ReadConfig(fileName string) []byte {
+	// 检查配置文件目录是否存在
+	d := OpenFile(configDir)
+	if !d.isExist {
+		log.Printf("the config dir %s is not exists, creating...\n", configDir)
+		err := d.CreateDir()
+		if err != nil {
+			log.Panic("failed to create the config dir... ")
+		}
+	}
 	localFile := configDir + "/" + fileName
 	f := OpenFile(localFile)
 

@@ -116,10 +116,10 @@ func ParseSub(res string, subName string) ([]conf.VNode, error) {
 }
 
 func ListSub() {
-	fmt.Println("=======================================================")
+	fmt.Println("============================================================================")
 	fmt.Println(output.F("name", 15), "url")
 	for name, sub := range conf.SubConfigNow {
 		fmt.Println(output.F(name, 15), sub.Url)
 	}
-	fmt.Println("=======================================================")
+	fmt.Println("============================================================================")
 }

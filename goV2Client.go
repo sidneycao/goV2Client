@@ -14,6 +14,7 @@ func main() {
 		help()
 		os.Exit(0)
 	}
+	//初始化读取数据
 	conf.LoadLocalConfig()
 	parseArgs(a[1:])
 }

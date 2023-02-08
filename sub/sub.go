@@ -31,7 +31,7 @@ func ParseArgs(a []string) {
 		fmt.Println("sub update")
 	case "--del", "-d":
 		args.CheckArgsLen(a, 2)
-		fmt.Println("sub del")
+		RemoveSubByName(a[1])
 	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListSub()
@@ -122,4 +122,24 @@ func ListSub() {
 		fmt.Println(output.F(name, 15), sub.Url)
 	}
 	fmt.Println("=============================================================================")
+}
+
+func RemoveSubByName(input string) {
+	log.Println("starting delete sub...")
+	for n, _ := range conf.SubConfigNow {
+		if n == input {
+			// 删除订阅
+			delete(conf.SubConfigNow, n)
+
+			// 删除节点
+			newNodeList := make([]conf.VNode, 0)
+			for _, n := range conf.NodeConfigNow.NodeList {
+				if n.SubName != input {
+					newNodeList = append(newNodeList, n)
+				}
+			}
+			conf.NodeConfigNow.NodeList = newNodeList
+			conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+		}
+	}
 }

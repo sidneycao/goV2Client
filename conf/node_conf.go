@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"goV2Client/tools/storage"
 	"log"
-	"strconv"
 	"strings"
 )
 
@@ -16,13 +15,13 @@ type VNode struct {
 }
 
 type VNodeStruct struct {
-	Ps   string `json:"ps"`
-	Add  string `json:"add"`
-	Port int    `json:"port"`
-	ID   string `json:"id"`
-	Aid  string `json:"aid"`
-	Net  string `json:"net"`
-	Type string `json:"type"`
+	Ps   string      `json:"ps"`
+	Add  string      `json:"add"`
+	Port interface{} `json:"port"`
+	ID   string      `json:"id"`
+	Aid  string      `json:"aid"`
+	Net  string      `json:"net"`
+	Type string      `json:"type"`
 	//TLS  string `json:"tls"`
 }
 
@@ -42,6 +41,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 	if err != nil {
 		log.Panicf("failed to unmarshall json to vmess struct because of %e...", err)
 	}
+
 	return &v, Parse2Conf(v)
 }
 
@@ -49,7 +49,7 @@ func Parse2StructAndConf(vmessJson string) (*VNodeStruct, string) {
 func Parse2Conf(v VNodeStruct) string {
 	m := storage.LoadConfigModule()
 	m = strings.Replace(m, "{Add}", v.Add, 1)
-	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port), 1)
+	m = strings.Replace(m, "{Port}", v.Port.(string), 1)
 	m = strings.Replace(m, "{ID}", v.ID, 1)
 	m = strings.Replace(m, "{Aid}", v.Aid, 1)
 

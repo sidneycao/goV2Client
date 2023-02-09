@@ -18,7 +18,7 @@ func ParseArgs(a []string) {
 	//添加订阅
 	case "--set", "-s":
 		args.CheckArgsLen(a, 1)
-		fmt.Println("node set")
+		SetNode(a[1])
 	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListServer()
@@ -71,5 +71,9 @@ func ListServer() {
 		}
 	}
 	fmt.Println("=============================================================================")
+
+}
+
+func SetNode(id string) {
 
 }

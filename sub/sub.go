@@ -148,7 +148,7 @@ func RemoveSubByName(input string) {
 }
 
 func UpdateSub(input string) {
-	log.Printf("starting update sub %s...\n", input)
+	log.Printf("starting update sub [%s]...\n", input)
 	if _, v := conf.SubConfigNow[input]; !v {
 		log.Printf("there is no sub [%s]\n", input)
 		return
@@ -165,7 +165,7 @@ func UpdateSub(input string) {
 	log.Printf("success, got %d node configs...\n", len(newNodeList))
 
 	// 删除旧数据
-	log.Printf("delete old config of sub %s...\n", input)
+	log.Printf("delete old config of sub [%s]...\n", input)
 	RemoveSubByName(input)
 
 	// 判断配置 id 是否越界
@@ -176,7 +176,7 @@ func UpdateSub(input string) {
 		conf.NodeConfigNow.Id = 0
 	}
 
-	log.Printf("save new config of sub %s...\n", input)
+	log.Printf("save new config of sub [%s]...\n", input)
 	conf.NodeConfigNow.NodeList = append(conf.NodeConfigNow.NodeList, newNodeList...)
 	conf.SubConfigNow[input] = sub
 	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)

@@ -95,20 +95,15 @@ func ReadConfig(fileName string) []byte {
 			log.Println("failed to create the config dir... ")
 		}
 	}
-	localFile := configDir + "/" + fileName
-	f := OpenFile(localFile)
+	f := OpenFile(fileName)
 
 	if !f.isExist {
-		log.Printf("config file %s is not exits...", localFile)
+		log.Printf("config file %s is not exits...", fileName)
 	}
 
 	r, err := f.Read()
 	if err != nil {
-		log.Printf("failed to read config file %s because of %e...", localFile, err)
+		log.Printf("failed to read config file %s because of %e...", fileName, err)
 	}
 	return r
-}
-
-func SaveDefaultConfig(configJson string, configFile string) {
-
 }

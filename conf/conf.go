@@ -6,8 +6,8 @@ import (
 	"log"
 )
 
-var subConfigFile = "sub.json"
-var nodeConfigFile = "node.json"
+var subConfigFile = "/usr/local/etc/goV2Config/sub.json"
+var nodeConfigFile = "/usr/local/etc/goV2Config/node.json"
 var initFlag = false
 
 // 配置文件相关的方法
@@ -46,4 +46,10 @@ func LoadLocalConfig() {
 	}
 	initFlag = true
 	log.Println("load config success...")
+}
+
+func SaveDefaultConfig(node VNode) {
+	if node.ConfigJson != "" {
+		storage.WriteConfig(node.ConfigJson, "/usr/local/etc/v2ray/default.json")
+	}
 }

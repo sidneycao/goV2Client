@@ -73,8 +73,7 @@ func CreateConfigModule() {
 }
 
 func WriteConfig(d string, fileName string) {
-	localFile := configDir + "/" + fileName
-	f := OpenFile(localFile)
+	f := OpenFile(fileName)
 
 	if f.isExist {
 		f.Delete()
@@ -82,7 +81,7 @@ func WriteConfig(d string, fileName string) {
 
 	err := f.Write(W_NEW, []string{d})
 	if err != nil {
-		log.Panicf("write to config file %s because of %e", localFile, err)
+		log.Panicf("write to config file %s because of %e", fileName, err)
 	}
 }
 
@@ -108,4 +107,8 @@ func ReadConfig(fileName string) []byte {
 		log.Printf("failed to read config file %s because of %e...", localFile, err)
 	}
 	return r
+}
+
+func SaveDefaultConfig(configJson string, configFile string) {
+
 }

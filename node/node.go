@@ -75,5 +75,12 @@ func ListServer() {
 }
 
 func SetNode(id string) {
+	i, _ := strconv.Atoi(id)
+	if i < 0 || i >= len(conf.NodeConfigNow.NodeList) {
+		log.Panicf("node id [%d] err...", i)
+	}
+	conf.NodeConfigNow.Id = i
 
+	conf.SaveDefaultConfig(conf.NodeConfigNow.NodeList[i])
+	log.Printf("success to set node id [%d]...\n", i)
 }

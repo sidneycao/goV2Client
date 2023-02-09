@@ -28,7 +28,7 @@ func ParseArgs(a []string) {
 		}
 	case "--update", "-u":
 		args.CheckArgsLen(a, 2)
-		UpdateSub()
+		UpdateSub(a[1])
 	case "--del", "-d":
 		args.CheckArgsLen(a, 2)
 		RemoveSubByName(a[1])
@@ -125,10 +125,10 @@ func ListSub() {
 }
 
 func RemoveSubByName(input string) {
-	log.Printf("starting delete sub %s...\n", input)
+	log.Printf("starting delete sub [%s]...\n", input)
 
 	if _, v := conf.SubConfigNow[input]; !v {
-		log.Printf("there is no sub named %s\n", input)
+		log.Printf("there is no sub [%s]\n", input)
 		return
 	}
 
@@ -144,18 +144,41 @@ func RemoveSubByName(input string) {
 	}
 	conf.NodeConfigNow.NodeList = newNodeList
 	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
-	log.Printf("success to delete sub named %s\n", input)
+	log.Printf("success to delete sub [%s]\n", input)
 }
 
-func UpdateSub() {
-
-	/**
+func UpdateSub(input string) {
 	log.Printf("starting update sub %s...\n", input)
-	for name := range conf.SubConfigNow {
-		if name == input {
-			// 先删除旧数据
-			RemoveSubByName(name)
-		}
+	if _, v := conf.SubConfigNow[input]; !v {
+		log.Printf("there is no sub [%s]\n", input)
+		return
 	}
-	**/
+
+	sub := conf.SubConfigNow[input]
+	log.Println("sub url is:", sub.Url)
+
+	// 获取新节点列表
+	newNodeList := GetSub(sub)
+	if len(newNodeList) == 0 {
+		log.Panic("node list is empty...")
+	}
+	log.Printf("success, got %d node configs...\n", len(newNodeList))
+
+	// 删除旧数据
+	log.Printf("delete old config of sub %s...\n", input)
+	RemoveSubByName(input)
+
+	// 判断配置 id 是否越界
+	// 目前如果id越界会重置为0
+	// 需要一个更可靠的方案来保证订阅更新后仍然使用当前节点
+	// 等待后续优化
+	if conf.NodeConfigNow.Id >= len(conf.NodeConfigNow.NodeList) {
+		conf.NodeConfigNow.Id = 0
+	}
+
+	log.Printf("save new config of sub %s...\n", input)
+	conf.NodeConfigNow.NodeList = append(conf.NodeConfigNow.NodeList, newNodeList...)
+	conf.SubConfigNow[input] = sub
+	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+
 }

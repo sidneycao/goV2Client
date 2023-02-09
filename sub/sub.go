@@ -28,7 +28,7 @@ func ParseArgs(a []string) {
 		}
 	case "--update", "-u":
 		args.CheckArgsLen(a, 2)
-		fmt.Println("sub update")
+		UpdateSub()
 	case "--del", "-d":
 		args.CheckArgsLen(a, 2)
 		RemoveSubByName(a[1])
@@ -125,23 +125,36 @@ func ListSub() {
 }
 
 func RemoveSubByName(input string) {
-	log.Println("starting delete sub...")
-	for name := range conf.SubConfigNow {
-		if name == input {
-			// 删除订阅
-			delete(conf.SubConfigNow, name)
+	log.Printf("starting delete sub %s...\n", input)
 
-			// 删除节点
-			newNodeList := make([]conf.VNode, 0)
-			for _, node := range conf.NodeConfigNow.NodeList {
-				if node.SubName != input {
-					newNodeList = append(newNodeList, node)
-				}
-			}
-			conf.NodeConfigNow.NodeList = newNodeList
-			conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
-			return
+	if _, v := conf.SubConfigNow[input]; !v {
+		log.Printf("there is no sub named %s\n", input)
+		return
+	}
+
+	// 删除订阅
+	delete(conf.SubConfigNow, input)
+
+	// 删除节点
+	newNodeList := make([]conf.VNode, 0)
+	for _, node := range conf.NodeConfigNow.NodeList {
+		if node.SubName != input {
+			newNodeList = append(newNodeList, node)
 		}
 	}
-	log.Printf("there is no sub named %s\n", input)
+	conf.NodeConfigNow.NodeList = newNodeList
+	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+}
+
+func UpdateSub() {
+
+	/**
+	log.Printf("starting update sub %s...\n", input)
+	for name := range conf.SubConfigNow {
+		if name == input {
+			// 先删除旧数据
+			RemoveSubByName(name)
+		}
+	}
+	**/
 }

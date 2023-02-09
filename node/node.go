@@ -80,7 +80,7 @@ func SetNode(id string) {
 		log.Panicf("node id [%d] err...", i)
 	}
 	conf.NodeConfigNow.Id = i
-
+	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
 	conf.SaveDefaultConfig(conf.NodeConfigNow.NodeList[i])
 	log.Printf("success to set node id [%d]...\n", i)
 }

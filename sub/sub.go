@@ -144,6 +144,7 @@ func RemoveSubByName(input string) {
 	}
 	conf.NodeConfigNow.NodeList = newNodeList
 	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
+	log.Printf("success to delete sub named %s\n", input)
 }
 
 func UpdateSub() {

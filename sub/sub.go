@@ -172,9 +172,13 @@ func UpdateSub(input string) {
 	// 目前如果id越界会重置为0
 	// 需要一个更可靠的方案来保证订阅更新后仍然使用当前节点
 	// 等待后续优化
+	/**
 	if conf.NodeConfigNow.Id >= len(conf.NodeConfigNow.NodeList) {
 		conf.NodeConfigNow.Id = 0
 	}
+	**/
+	// 直接讲节点ID设置为0
+	conf.NodeConfigNow.Id = 0
 
 	log.Printf("save new config of sub [%s]...\n", input)
 	conf.NodeConfigNow.NodeList = append(conf.NodeConfigNow.NodeList, newNodeList...)

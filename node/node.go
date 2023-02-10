@@ -75,6 +75,7 @@ func ListServer() {
 
 }
 
+// 由set触发将node.json中的某条配置写入default.json
 func SetNode(id string) {
 	i, _ := strconv.Atoi(id)
 	if i < 0 || i >= len(conf.NodeConfigNow.NodeList) {

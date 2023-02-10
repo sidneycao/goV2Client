@@ -7,6 +7,7 @@ import (
 	"goV2Client/tools/b64"
 	"goV2Client/tools/output"
 	"log"
+	"os/exec"
 	"strconv"
 	"strings"
 )
@@ -83,4 +84,35 @@ func SetNode(id string) {
 	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
 	conf.SaveDefaultConfig(conf.NodeConfigNow.NodeList[i])
 	log.Printf("success to set node id [%d]...\n", i)
+	RestartV2ray()
+}
+
+func RestartV2ray() {
+	log.Println("restarting v2ray process...")
+	runConfig := conf.NodeConfigNow.NodeList[conf.NodeConfigNow.Id]
+
+	log.Println("now config is:  ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓")
+	fmt.Println("=============================================================================")
+	fmt.Println(
+		output.F("ID", 5),
+		output.F("别名", 30),
+		output.F("地址", 40),
+		output.F("端口", 10),
+		output.F("类型", 5),
+	)
+	fmt.Println(
+		output.F(" "+strconv.Itoa(conf.NodeConfigNow.Id), 5),
+		output.F(runConfig.Vmess.Ps, 30),
+		output.F(runConfig.Vmess.Add, 40),
+		output.F(fmt.Sprint(runConfig.Vmess.Port.(float64)), 10),
+		output.F(runConfig.Vmess.Net, 5),
+	)
+	fmt.Println("=============================================================================")
+
+	cmd := exec.Command("systemctl", "restart", "v2ray")
+	err := cmd.Run()
+	if err != nil {
+		log.Panic(err)
+	}
+	log.Println("success to restart v2ray process")
 }

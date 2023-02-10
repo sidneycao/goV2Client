@@ -177,7 +177,7 @@ func UpdateSub(input string) {
 		conf.NodeConfigNow.Id = 0
 	}
 	**/
-	// 直接讲节点ID设置为0
+	// 直接将节点ID设置为0
 	conf.NodeConfigNow.Id = 0
 
 	log.Printf("save new config of sub [%s]...\n", input)

@@ -70,7 +70,7 @@ func Parse2Conf(v VNodeStruct) string {
 	m = strings.Replace(m, "{Aid}", v.Aid, 1)
 	m = strings.Replace(m, "{Net}", v.Net, 1)
 	m = strings.Replace(m, "{Host}", v.Host, 1)
-	m = strings.Replace(m, "{Path}}", v.Path, 1)
+	m = strings.Replace(m, "{Path}", v.Path, 1)
 
 	return m
 }

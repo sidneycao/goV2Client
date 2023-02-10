@@ -35,7 +35,7 @@ type VNodeConfig struct {
 	NodeList []VNode
 }
 
-var NodeConfigNow VNodeConfig
+var NodeConfigNow VNodeConfig = VNodeConfig{-1, []VNode{}}
 
 // 通过vmess json
 // 返回VNode结构和v2ray config

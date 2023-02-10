@@ -24,6 +24,8 @@ type VNodeStruct struct {
 	Aid  string      `json:"aid"`
 	Net  string      `json:"net"`
 	Type string      `json:"type"`
+	Host string      `json:"host"`
+	Path string      `json:"path"`
 	//TLS  string `json:"tls"`
 }
 
@@ -66,6 +68,9 @@ func Parse2Conf(v VNodeStruct) string {
 	m = strings.Replace(m, "{Port}", strconv.Itoa(v.Port.(int)), 1)
 	m = strings.Replace(m, "{ID}", v.ID, 1)
 	m = strings.Replace(m, "{Aid}", v.Aid, 1)
+	m = strings.Replace(m, "{Net}", v.Net, 1)
+	m = strings.Replace(m, "{Host}", v.Host, 1)
+	m = strings.Replace(m, "{Path}}", v.Path, 1)
 
 	return m
 }

@@ -57,7 +57,7 @@ func ListServer() {
 				output.F(config.Vmess.Add, 40),
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
-				output.F(config.Vmess.Type, 5),
+				output.F(config.Vmess.Net, 5),
 				"\033[0m",
 			)
 		} else {
@@ -66,7 +66,7 @@ func ListServer() {
 				output.F(config.Vmess.Ps, 30),
 				output.F(config.Vmess.Add, 40),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
-				output.F(config.Vmess.Type, 5),
+				output.F(config.Vmess.Net, 5),
 			)
 		}
 	}

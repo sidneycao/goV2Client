@@ -143,6 +143,8 @@ func RemoveSubByName(input string) {
 		}
 	}
 	conf.NodeConfigNow.NodeList = newNodeList
+	//删除订阅后， 节点ID默认变为0
+	conf.NodeConfigNow.Id = 0
 	conf.WriteLocalConfig(conf.SubConfigNow, conf.NodeConfigNow)
 	log.Printf("success to delete sub [%s]\n", input)
 }

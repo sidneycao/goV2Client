@@ -30,13 +30,13 @@ var module = `{
 				]
 			},
 			"streamSettings":{
-				"network": "{Net}"
+				"network": "{Net}",
 				"wsSettings": {
 					"headers": {
 						"Host": "{Host}"
 					},
 					"path": "{Path}"
-				}
+				},
 				"sockopt": {
 					"mark": 255
 				}

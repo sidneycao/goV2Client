@@ -2,6 +2,7 @@ package speedtest
 
 import (
 	"bytes"
+	"fmt"
 
 	"github.com/SidneyCao/tcping/utils"
 )
@@ -15,5 +16,5 @@ func Start(host string, port string, timeout string, interval string, counters i
 	// 等待ping完成
 	<-pinger.Done()
 	// 取整
-	return string(utils.Round(pinger.TotalDuration, 1))
+	return fmt.Sprint(utils.Round(pinger.TotalDuration, 1))
 }

@@ -131,5 +131,6 @@ func Speedtest() {
 	for _, config := range conf.NodeConfigNow.NodeList {
 		speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 		config.Speed = fmt.Sprint(speed)
+		fmt.Println(speed)
 	}
 }

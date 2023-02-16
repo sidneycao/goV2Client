@@ -13,5 +13,5 @@ func Start(host string, port string, timeout string, interval string, counters i
 	// 等待ping完成
 	<-pinger.Done()
 	// 取整
-	return utils.Round(pinger.TotalDuration, 0)
+	return utils.Round(pinger.TotalDuration, 1)
 }

@@ -44,6 +44,7 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 
 func ListServer() {
 	fmt.Println("=============================================================================")
+	Speedtest()
 	fmt.Println(
 		output.F("ID", 5),
 		output.F("别名", 30),
@@ -54,7 +55,7 @@ func ListServer() {
 	)
 	for i, config := range conf.NodeConfigNow.NodeList {
 		// 此处方法不合理 待优化
-		speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
+		// speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
 				"\033[32m",
@@ -64,7 +65,7 @@ func ListServer() {
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				output.F(fmt.Sprint(speed), 5),
+				output.F(config.Speed, 5),
 				"\033[0m",
 			)
 		} else {
@@ -74,7 +75,7 @@ func ListServer() {
 				output.F(config.Vmess.Add, 40),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				output.F(fmt.Sprint(speed), 5),
+				output.F(config.Speed, 5),
 			)
 		}
 	}
@@ -123,4 +124,10 @@ func RestartV2ray() {
 		log.Panic(err)
 	}
 	log.Println("success to restart v2ray process")
+}
+
+func Speedtest() {
+	for _, config := range conf.NodeConfigNow.NodeList {
+		config.Speed = speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
+	}
 }

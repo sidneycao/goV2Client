@@ -2,8 +2,9 @@ package conf
 
 import (
 	"encoding/json"
-	"goV2Client/tools/storage"
 	"log"
+
+	"github.com/SidneyCao/goV2Client/tools/storage"
 )
 
 var subConfigFile = "/usr/local/etc/goV2Config/sub.json"

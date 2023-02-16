@@ -1,3 +1,3 @@
-module goV2Client
+module github.com/SidneyCao/goV2Client
 
-go 1.16
+go 1.18

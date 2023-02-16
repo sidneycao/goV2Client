@@ -2,14 +2,15 @@ package node
 
 import (
 	"fmt"
-	"goV2Client/conf"
-	"goV2Client/tools/args"
-	"goV2Client/tools/b64"
-	"goV2Client/tools/output"
 	"log"
 	"os/exec"
 	"strconv"
 	"strings"
+
+	"github.com/SidneyCao/goV2Client/conf"
+	"github.com/SidneyCao/goV2Client/tools/args"
+	"github.com/SidneyCao/goV2Client/tools/b64"
+	"github.com/SidneyCao/goV2Client/tools/output"
 )
 
 // 节点相关的方法

@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"goV2Client/conf"
-	"goV2Client/node"
-	"goV2Client/sub"
 	"os"
+
+	"github.com/SidneyCao/goV2Client/conf"
+	"github.com/SidneyCao/goV2Client/node"
+	"github.com/SidneyCao/goV2Client/sub"
 )
 
 func main() {

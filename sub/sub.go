@@ -3,15 +3,16 @@ package sub
 import (
 	"errors"
 	"fmt"
-	"goV2Client/conf"
-	"goV2Client/node"
-	"goV2Client/tools/args"
-	"goV2Client/tools/b64"
-	"goV2Client/tools/output"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/SidneyCao/goV2Client/conf"
+	"github.com/SidneyCao/goV2Client/node"
+	"github.com/SidneyCao/goV2Client/tools/args"
+	"github.com/SidneyCao/goV2Client/tools/b64"
+	"github.com/SidneyCao/goV2Client/tools/output"
 )
 
 // 订阅相关的方法

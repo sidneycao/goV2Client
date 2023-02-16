@@ -2,11 +2,12 @@ package conf
 
 import (
 	"encoding/json"
-	"goV2Client/tools/storage"
 	"log"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"github.com/SidneyCao/goV2Client/tools/storage"
 )
 
 type VNode struct {

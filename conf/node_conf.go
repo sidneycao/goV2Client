@@ -15,6 +15,7 @@ type VNode struct {
 	Vmess      VNodeStruct //解析后的vmess json的结构
 	Source     string      //原始vmess链接  vmess://
 	ConfigJson string      //通过解析后的vmess json 转换得到的 v2ray config
+	Speed      string      //测速后的延迟
 }
 
 type VNodeStruct struct {

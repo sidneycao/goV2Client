@@ -22,8 +22,8 @@ if err != nil {
 }
 log.Println("success to restart v2ray process")
 ```  
+
 <br/>
-<br />
 ```  
 订阅管理：  
   --sub --add(-a) {name} {url}  

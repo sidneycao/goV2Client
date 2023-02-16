@@ -53,6 +53,7 @@ func ListServer() {
 		output.F("TCP测速", 5),
 	)
 	for i, config := range conf.NodeConfigNow.NodeList {
+		// 此处方法不合理 待优化
 		speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(

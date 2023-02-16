@@ -128,6 +128,7 @@ func RestartV2ray() {
 
 func Speedtest() {
 	/**
+	错误，只修改了形参
 	for _, config := range conf.NodeConfigNow.NodeList {
 		config.Speed = speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 	}

@@ -10,5 +10,7 @@ func Start(host string, port string, timeout string, interval string, counters i
 	t := utils.NewTarget(host, port, timeout, interval)
 	pinger := utils.NewPing(*t, counters)
 	go pinger.Ping()
-	return pinger.TotalDuration
+
+	// 取整
+	return utils.Round(pinger.TotalDuration, 0)
 }

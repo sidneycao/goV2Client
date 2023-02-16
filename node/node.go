@@ -61,10 +61,10 @@ func ListServer() {
 				"\033[32m",
 				output.F("["+strconv.Itoa(i)+"]", 5),
 				output.F(config.Vmess.Ps, 30),
-				output.F(config.Vmess.Add, 40),
+				output.F(config.Vmess.Add, 35),
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
-				output.F(config.Vmess.Net, 5),
+				output.F(config.Vmess.Net, 10),
 				output.F(config.Speed, 5),
 				"\033[0m",
 			)
@@ -72,9 +72,9 @@ func ListServer() {
 			fmt.Println(
 				output.F(" "+strconv.Itoa(i), 5),
 				output.F(config.Vmess.Ps, 30),
-				output.F(config.Vmess.Add, 40),
+				output.F(config.Vmess.Add, 35),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
-				output.F(config.Vmess.Net, 5),
+				output.F(config.Vmess.Net, 10),
 				output.F(config.Speed, 5),
 			)
 		}
@@ -83,7 +83,7 @@ func ListServer() {
 
 }
 
-// 由set触发将node.json中的某条配置写入default.json
+// 由set触发将node.json中的某条配置写入v2rayConfigFile
 func SetNode(id string) {
 	i, _ := strconv.Atoi(id)
 	if i < 0 || i >= len(conf.NodeConfigNow.NodeList) {
@@ -105,9 +105,9 @@ func RestartV2ray() {
 	fmt.Println(
 		output.F("ID", 5),
 		output.F("别名", 30),
-		output.F("地址", 40),
+		output.F("地址", 35),
 		output.F("端口", 10),
-		output.F("类型", 5),
+		output.F("类型", 10),
 	)
 	fmt.Println(
 		output.F(" "+strconv.Itoa(conf.NodeConfigNow.Id), 5),

@@ -43,7 +43,7 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 }
 
 func ListServer() {
-	log.Println("speed testing with github.com/SidneyCao/tcping....")
+	log.Println("speed testing with github.com/SidneyCao/tcping...")
 	fmt.Println("=======================================================================================================")
 	Speedtest()
 	fmt.Println(

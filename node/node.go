@@ -25,9 +25,6 @@ func ParseArgs(a []string) {
 	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListServer()
-	case "--speedtest", "-t":
-		args.CheckArgsLen(a, 1)
-		Speedtest()
 	default:
 		ListServer()
 	}
@@ -46,7 +43,6 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 }
 
 func ListServer() {
-	Speedtest()
 	fmt.Println("=============================================================================")
 	fmt.Println(
 		output.F("ID", 5),
@@ -57,6 +53,7 @@ func ListServer() {
 		output.F("TCP测速", 5),
 	)
 	for i, config := range conf.NodeConfigNow.NodeList {
+		speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 		if i == conf.NodeConfigNow.Id {
 			fmt.Println(
 				"\033[32m",
@@ -66,7 +63,7 @@ func ListServer() {
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				output.F(config.Speed, 5),
+				output.F(fmt.Sprint(speed), 5),
 				"\033[0m",
 			)
 		} else {
@@ -76,7 +73,7 @@ func ListServer() {
 				output.F(config.Vmess.Add, 40),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				output.F(config.Speed, 5),
+				output.F(fmt.Sprint(speed), 5),
 			)
 		}
 	}
@@ -125,12 +122,4 @@ func RestartV2ray() {
 		log.Panic(err)
 	}
 	log.Println("success to restart v2ray process")
-}
-
-func Speedtest() {
-	for _, config := range conf.NodeConfigNow.NodeList {
-		speed := speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
-		config.Speed = fmt.Sprint(speed)
-		fmt.Println(speed)
-	}
 }

@@ -133,6 +133,8 @@ func Speedtest() {
 		config.Speed = speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
 	}
 	**/
+
+	// 未实现并发 待优化
 	for i := 0; i < len(conf.NodeConfigNow.NodeList); i++ {
 		config := &conf.NodeConfigNow.NodeList[i]
 		config.Speed = speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)

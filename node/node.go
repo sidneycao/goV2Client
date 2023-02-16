@@ -43,14 +43,14 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 }
 
 func ListServer() {
-	fmt.Println("=============================================================================")
+	fmt.Println("=======================================================================================================")
 	Speedtest()
 	fmt.Println(
 		output.F("ID", 5),
 		output.F("别名", 30),
-		output.F("地址", 40),
+		output.F("地址", 35),
 		output.F("端口", 10),
-		output.F("类型", 5),
+		output.F("类型", 10),
 		output.F("TCP测速", 5),
 	)
 	for i, config := range conf.NodeConfigNow.NodeList {
@@ -79,7 +79,7 @@ func ListServer() {
 			)
 		}
 	}
-	fmt.Println("=============================================================================")
+	fmt.Println("=======================================================================================================")
 
 }
 
@@ -112,9 +112,9 @@ func RestartV2ray() {
 	fmt.Println(
 		output.F(" "+strconv.Itoa(conf.NodeConfigNow.Id), 5),
 		output.F(runConfig.Vmess.Ps, 30),
-		output.F(runConfig.Vmess.Add, 40),
+		output.F(runConfig.Vmess.Add, 35),
 		output.F(fmt.Sprint(runConfig.Vmess.Port.(float64)), 10),
-		output.F(runConfig.Vmess.Net, 5),
+		output.F(runConfig.Vmess.Net, 10),
 	)
 	fmt.Println("=============================================================================")
 

@@ -46,6 +46,7 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 }
 
 func ListServer() {
+	Speedtest()
 	fmt.Println("=============================================================================")
 	fmt.Println(
 		output.F("ID", 5),
@@ -65,7 +66,7 @@ func ListServer() {
 				//Port由float64转为string
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				//output.F(fmt.Sprint(speed), 5),
+				output.F(config.Speed, 5),
 				"\033[0m",
 			)
 		} else {
@@ -75,7 +76,7 @@ func ListServer() {
 				output.F(config.Vmess.Add, 40),
 				output.F(fmt.Sprint(config.Vmess.Port.(float64)), 10),
 				output.F(config.Vmess.Net, 5),
-				//output.F(fmt.Sprint(speed), 5),
+				output.F(config.Speed, 5),
 			)
 		}
 	}

@@ -1,5 +1,6 @@
 # goV2Client  
-使用golang编写的V2ray客户端，支持添加/删除/更新订阅。  
+使用golang编写的V2ray客户端，支持添加/删除/更新订阅。
+<br/>  
 使用前请根据你们的情况修改 conf/conf.go 中以下三个变量的值  
 
 ```
@@ -10,6 +11,7 @@ var nodeConfigFile = "/usr/local/etc/goV2Config/node.json"
 // v2ray进程的配置文件
 var v2rayConfigFile = "/usr/local/etc/v2ray/default.json"
 ```
+<br/>
 另外请注意，本工具使用systemd来重启v2ray，请在使用前将v2ray添加到systemd  
 ```
 cmd := exec.Command("systemctl", "restart", "v2ray")
@@ -19,7 +21,7 @@ if err != nil {
 }
 log.Println("success to restart v2ray process")
 ```
-
+<br/>
 ```  
 订阅管理：  
   --sub --add(-a) {name} {url}  

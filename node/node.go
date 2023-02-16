@@ -24,6 +24,9 @@ func ParseArgs(a []string) {
 	case "--list", "-l":
 		args.CheckArgsLen(a, 1)
 		ListServer()
+	case "--speedtest", "-t":
+		args.CheckArgsLen(a, 1)
+		Speedtest()
 	default:
 		ListServer()
 	}
@@ -117,4 +120,8 @@ func RestartV2ray() {
 		log.Panic(err)
 	}
 	log.Println("success to restart v2ray process")
+}
+
+func Speedtest() {
+
 }

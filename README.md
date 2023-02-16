@@ -13,6 +13,7 @@ var v2rayConfigFile = "/usr/local/etc/v2ray/default.json"
 ```
 <br/>
 另外请注意，本工具使用systemd来重启v2ray，请在使用前将v2ray添加到systemd  
+
 ```
 cmd := exec.Command("systemctl", "restart", "v2ray")
 err := cmd.Run()
@@ -20,7 +21,8 @@ if err != nil {
 	log.Panic(err)
 }
 log.Println("success to restart v2ray process")
-```
+```  
+
 <br/>
 ```  
 订阅管理：  

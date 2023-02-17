@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/SidneyCao/goV2Client/conf"
 	"github.com/SidneyCao/goV2Client/tools/args"
@@ -134,9 +135,14 @@ func Speedtest() {
 	}
 	**/
 
-	// 未实现并发 待优化
+	// 将超时时间转为string
+	tStr := strconv.Itoa(speedtest.SpeedTestTimeout)
+
 	for i := 0; i < len(conf.NodeConfigNow.NodeList); i++ {
 		config := &conf.NodeConfigNow.NodeList[i]
-		config.Speed = speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), "2", "1", 1)
+		go speedtest.Start(config.Vmess.Add, fmt.Sprint(config.Vmess.Port.(float64)), tStr, "1", 1, &config.Speed)
 	}
+
+	// 休眠两倍于超时时间的时间
+	time.Sleep(time.Duration(speedtest.SpeedTestTimeout) * time.Second)
 }

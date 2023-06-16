@@ -19,7 +19,6 @@ if err != nil {
 }
 log.Println("success to restart v2ray process")
 ```  
-```
 另外，本工具只会更新v2ray配置文件中的"outbounds"字段内容，其余字段内容需要保存于另外的文件中，并在启动时使用多配置文件模式启动。  
 ```
 /usr/local/bin/v2ray run -config /usr/local/etc/v2ray/inbounds.json -c /usr/local/etc/v2ray/default.json

@@ -10,7 +10,7 @@ var nodeConfigFile = "/usr/local/etc/goV2Config/node.json"
 // v2ray进程的配置文件
 var v2rayConfigFile = "/usr/local/etc/v2ray/default.json"
 ```
-另外请注意，本工具使用systemd来重启v2ray，请在使用前将v2ray添加到systemd  
+请注意，本工具使用systemd来重启v2ray，请在使用前将v2ray添加到systemd  
 ```
 cmd := exec.Command("systemctl", "restart", "v2ray")
 err := cmd.Run()
@@ -19,7 +19,11 @@ if err != nil {
 }
 log.Println("success to restart v2ray process")
 ```  
-```  
+```
+另外，本工具只会更新v2ray配置文件中的"outbounds"字段内容，其余字段内容需要保存于另外的文件中，并在启动时使用多配置文件模式启动。  
+```
+/usr/local/bin/v2ray run -config /usr/local/etc/v2ray/inbounds.json -c /usr/local/etc/v2ray/default.json
+```
 订阅管理：  
   --sub --add(-a) {name} {url}  
     添加一个订阅，订阅后节点添加到node list  

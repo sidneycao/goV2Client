@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/SidneyCao/goV2Client/conf"
-	"github.com/SidneyCao/goV2Client/node"
-	"github.com/SidneyCao/goV2Client/sub"
+	"github.com/sidneycao/goV2Client/conf"
+	"github.com/sidneycao/goV2Client/node"
+	"github.com/sidneycao/goV2Client/sub"
 )
 
 func main() {

@@ -1,2 +1,4 @@
-github.com/SidneyCao/tcping v0.0.7 h1:AubHno2A94F07cUT2hukwl0LE5tVbknpeRozrx4478c=
-github.com/SidneyCao/tcping v0.0.7/go.mod h1:TaynnwoNZlrLgEFPIcxkl12eRJtwldJdYmrsnd3aJIM=
+github.com/SidneyCao/goV2Client v0.0.0-20230616062424-57d648d4a4a8 h1:aaDBSjXPNm+TF3e5sF2m2cUFKqSBJ5OL+5yb4t2f2Ds=
+github.com/SidneyCao/goV2Client v0.0.0-20230616062424-57d648d4a4a8/go.mod h1:Mk9TaDUBgw4lxbC94PAD72C7TqgUYC07vFroo2pwDUY=
+github.com/SidneyCao/tcping v1.0.0 h1:AmyAXPBGfmM6upkZGDuGKEMPAr7cyKIQYk+acWX9Ht4=
+github.com/SidneyCao/tcping v1.0.0/go.mod h1:TaynnwoNZlrLgEFPIcxkl12eRJtwldJdYmrsnd3aJIM=

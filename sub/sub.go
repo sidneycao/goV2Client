@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/SidneyCao/goV2Client/conf"
-	"github.com/SidneyCao/goV2Client/node"
-	"github.com/SidneyCao/goV2Client/tools/args"
-	"github.com/SidneyCao/goV2Client/tools/b64"
-	"github.com/SidneyCao/goV2Client/tools/output"
+	"github.com/sidneycao/goV2Client/conf"
+	"github.com/sidneycao/goV2Client/node"
+	"github.com/sidneycao/goV2Client/tools/args"
+	"github.com/sidneycao/goV2Client/tools/b64"
+	"github.com/sidneycao/goV2Client/tools/output"
 )
 
 // 订阅相关的方法

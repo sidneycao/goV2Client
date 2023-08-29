@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SidneyCao/goV2Client/conf"
-	"github.com/SidneyCao/goV2Client/tools/args"
-	"github.com/SidneyCao/goV2Client/tools/b64"
-	"github.com/SidneyCao/goV2Client/tools/output"
-	"github.com/SidneyCao/goV2Client/tools/speedtest"
+	"github.com/sidneycao/goV2Client/conf"
+	"github.com/sidneycao/goV2Client/tools/args"
+	"github.com/sidneycao/goV2Client/tools/b64"
+	"github.com/sidneycao/goV2Client/tools/output"
+	"github.com/sidneycao/goV2Client/tools/speedtest"
 )
 
 // 节点相关的方法
@@ -44,7 +44,7 @@ func ParseNode(vmessLink string) (*conf.VNodeStruct, string) {
 }
 
 func ListServer() {
-	log.Println("speed testing with github.com/SidneyCao/tcping...")
+	log.Println("speed testing with github.com/sidneycao/tcping...")
 	fmt.Println("=======================================================================================================")
 	Speedtest()
 	fmt.Println(

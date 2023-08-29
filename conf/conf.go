@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/SidneyCao/goV2Client/tools/storage"
+	"github.com/sidneycao/goV2Client/tools/storage"
 )
 
 var subConfigFile = "/usr/local/etc/goV2Config/sub.json"

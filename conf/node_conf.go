@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/SidneyCao/goV2Client/tools/storage"
+	"github.com/sidneycao/goV2Client/tools/storage"
 )
 
 type VNode struct {

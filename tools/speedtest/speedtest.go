@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/SidneyCao/tcping/utils"
+	"github.com/sidneycao/tcping/utils"
 )
 
 var SpeedTestTimeout int = 1

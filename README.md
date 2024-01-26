@@ -23,6 +23,7 @@ log.Println("success to restart v2ray process")
 ```
 /usr/local/bin/v2ray run -config /usr/local/etc/v2ray/inbounds.json -c /usr/local/etc/v2ray/default.json
 ```
+```
 订阅管理：  
   --sub --add(-a) {name} {url}  
     添加一个订阅，订阅后节点添加到node list  
